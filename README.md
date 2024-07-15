@@ -26,6 +26,10 @@ This package uses [Poetry](https://python-poetry.org) for packaging and Python v
 
         poetry install --all-extras
 
+4.  Run the following command to launch a shell that is preconfigured with the project's virtual environment:
+
+        poetry shell
+
 ## How to add notice types
 
 For a mostly complete example, see https://github.com/nasa-gcn/gcn-classic-to-json/tree/main/gcn_classic_to_json/notices/SWIFT_BAT_GRB_POS_ACK.
