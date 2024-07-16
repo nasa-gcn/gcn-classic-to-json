@@ -1,17 +1,9 @@
-from astropy.time import Time
-
-# Zero point for Truncated Julian Day according to
-# https://en.wikipedia.org/wiki/Julian_day.
-TJD0 = (2440000, 0.5)
+from ... import utils
 
 
 def parse(bin):
     return {
-        "trigger_time": Time(
-            bin[5] + TJD0[0],
-            bin[6] / 8640000 + TJD0[1],
-            format="jd",
-        ).isot,
+        "trigger_time": utils.tjd_to_jd(bin[5], bin[6]),
         "ra": 1e-4 * bin[7],
         "dec": 1e-4 * bin[8],
         "ra_dec_error": 1e-4 * bin[11],
