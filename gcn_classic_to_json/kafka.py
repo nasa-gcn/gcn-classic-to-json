@@ -7,11 +7,11 @@
 #
 """Convert GCN Classic notices to JSON."""
 
-import json
 import logging
 
 import gcn_kafka
 
+from . import json
 from . import metrics
 from . import notices
 
