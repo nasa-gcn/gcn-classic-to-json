@@ -2,8 +2,7 @@ import importlib.resources
 
 import pytest
 
-from .. import json
-from .. import notices
+from .. import json, notices
 
 files = importlib.resources.files(notices)
 
