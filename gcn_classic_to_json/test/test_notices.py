@@ -1,8 +1,10 @@
 import importlib.resources
+from json import load
 
 import pytest
 
-from .. import json, notices
+from .. import notices
+from ..json import dumps
 
 files = importlib.resources.files(notices)
 
@@ -17,9 +19,9 @@ def test_notices(key, generate):
 
     if generate:
         with json_path.open("w") as f:
-            json.dump(actual, f, indent=2)
+            print(dumps(actual, indent=2), file=f)
         pytest.skip(f"saved expected output to {json_path}")
 
     with json_path.open("r") as f:
-        expected = json.load(f)
+        expected = load(f)
     assert actual == expected
