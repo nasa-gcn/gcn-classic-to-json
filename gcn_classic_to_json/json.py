@@ -1,6 +1,8 @@
-import numpy as np
+from json import dump as _orig_dump
+from json import dumps as _orig_dumps
+from json import load, loads
 
-from json import dump as _orig_dump, dumps as _orig_dumps, load, loads
+import numpy as np
 
 __all__ = ("dump", "dumps", "load", "loads")
 
