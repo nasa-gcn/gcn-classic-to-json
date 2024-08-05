@@ -11,8 +11,12 @@ _parsers = {
 keys = tuple(_parsers.keys())
 
 
+def _frombuffer(value):
+    return np.frombuffer(value, dtype=">i4")
+
+
 def parse(key, value):
-    ints = np.frombuffer(value, dtype=">i4")
+    ints = _frombuffer(value)
     assert len(ints) == 40
     parser = _parsers[key]
     return parser(ints)
