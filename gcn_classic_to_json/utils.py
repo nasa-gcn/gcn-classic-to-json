@@ -31,8 +31,9 @@ def datetime_to_iso8601(date, time):
 def binary_to_string(binary):
     """Converts a binary array to a ASCII-string.
 
-    The function converts each field encoded as a 4-byte integer into
-    four 1-byte integers and then to their corresponding ASCII value.
+    The function converts `binary` into a C-style string,
+    flips the position of every 4 bytes, strips excess null characters
+    and then converts the result into ASCII characters.
 
     Parameters
     ----------
@@ -46,10 +47,12 @@ def binary_to_string(binary):
 
     Notes:
     ------
-    The strings in the binary packets seem to encoded little-endian.
+    The strings in the binary packets look like they were accidentally byte-swapped.
     """
-    bits_array = np.asarray(binary, dtype="<i4").view(dtype="u1")
-    str_list = [chr(bits) for bits in bits_array]
-    string = "".join(str_list)
-    excess_char = string.count("\u0000")
-    return string.replace("\u0000", "", excess_char)
+    return (
+        np.fliplr(binary.view("c").reshape(-1, 4))
+        .ravel()
+        .tobytes()
+        .strip(b"\0")
+        .decode()
+    )

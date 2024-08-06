@@ -5,13 +5,10 @@ from ... import utils
 
 def parse(bin):
     assert bin[12] == 0, "Unused. According to docs: 'Always 0 for FLT_LC'"
-    bin[
-        1
-    ]  # Unused. According to docs: 'serial number of the packet'. Generally set to 1.
+    bin[1]  # Unused. According to docs: 'Generally set to 1.'
     bin[2]  # Unused. According to docs: 'hopcount item is defunct'.
-    bin[
-        3
-    ]  # Unused. According to docs: 'seconds of day when packet was created'. Cannot use without date that the packet.
+    bin[3]  # Unused. According to docs: 'seconds of day when packet was created'.
+    bin[13:16]  # Unused. According to docs: '12 bytes for the future'
     bin[20:29]  # Unused. According to docs: '36 bytes for the future'
 
     lat, lon = bin[16:17].view(">i2")
@@ -47,7 +44,7 @@ def parse(bin):
         "latitude": lat * 1e-2,
         "longitude": lon * 1e-2,
         "detector_status": detectors,
-        "url": f"http://cgbm.calet.jp/cgbm_trigger/flight/{bin[4]}"
+        "url": f"http://cgbm.calet.jp/cgbm_trigger/flight/{bin[4]}/"
         + utils.binary_to_string(bin[29:39]),
         "additional_info": comments if comments else None,
     }
