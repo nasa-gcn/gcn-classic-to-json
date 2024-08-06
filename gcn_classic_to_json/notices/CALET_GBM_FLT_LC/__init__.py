@@ -30,8 +30,6 @@ def parse(bin):
     return {
         "mission": "CALET",
         "instrument": "GBM",
-        # "alert_type" : "initial", # does not exist in the binaries
-        # "record_number" = 1, # does not exist in binaries
         "id": [bin[4]],
         "messenger": "EM",
         "trigger_time": utils.datetime_to_iso8601(bin[5], bin[6]),

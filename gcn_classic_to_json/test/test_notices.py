@@ -67,7 +67,7 @@ def test_all_fields_used(key, monkeypatch):
 
     if not used.all():
         raise AssertionError(
-            f'All fields in the binary packet must be used. The fields with the following indices were unused: {' '.join(np.flatnonzero(~used).astype(str))}'
+            f"All fields in the binary packet must be used. The fields with the following indices were unused: {' '.join(np.flatnonzero(~used).astype(str))}"
         )
 
 
