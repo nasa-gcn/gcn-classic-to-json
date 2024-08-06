@@ -1,5 +1,5 @@
 import importlib.resources
-from json import load
+from json import load, loads
 
 import numpy as np
 import pytest
@@ -52,11 +52,12 @@ def test_notices(key, generate):
     json_path = files / key / "example.json"
 
     value = bin_path.read_bytes()
-    actual = notices.parse(key, value)
+    actual_str = dumps(notices.parse(key, value), indent=2)
+    actual = loads(actual_str)
 
     if generate:
         with json_path.open("w") as f:
-            print(dumps(actual, indent=2), file=f)
+            print(actual_str, file=f)
         pytest.skip(f"saved expected output to {json_path}")
 
     with json_path.open("r") as f:
