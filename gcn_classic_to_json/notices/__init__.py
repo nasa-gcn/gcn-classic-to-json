@@ -2,6 +2,7 @@ import importlib
 import pkgutil
 
 import numpy as np
+from gcn import NoticeType
 
 _parsers = {
     module: importlib.import_module(f".{module}", __package__).parse
@@ -18,5 +19,9 @@ def _frombuffer(value):
 def parse(key, value):
     ints = _frombuffer(value)
     assert len(ints) == 40
+    assert ints[0] == NoticeType[key], "Field 0 must equal the notice type"
+    assert (
+        ints[-1] == np.asarray("\0\0\0\n", dtype="c").view(">i4")[0]
+    ), "Field 39 must be a newline"
     parser = _parsers[key]
     return parser(ints)
