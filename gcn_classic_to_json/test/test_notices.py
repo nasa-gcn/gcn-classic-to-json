@@ -1,8 +1,10 @@
 import importlib.resources
-from json import load
+from json import load, loads
 
 import numpy as np
 import pytest
+import requests
+from jsonschema import validate
 
 from .. import notices
 from ..json import dumps
@@ -41,7 +43,7 @@ def test_all_fields_used(key, monkeypatch):
 
     if not used.all():
         raise AssertionError(
-            f'All fields in the binary packet must be used. The fields with the following indices were unused: {' '.join(np.flatnonzero(~used).astype(str))}'
+            f"All fields in the binary packet must be used. The fields with the following indices were unused: {' '.join(np.flatnonzero(~used).astype(str))}"
         )
 
 
@@ -62,3 +64,21 @@ def test_notices(key, generate):
     with json_path.open("r") as f:
         expected = load(f)
     assert actual == expected
+
+
+@pytest.mark.parametrize("key", notices.keys)
+def test_validation(key):
+    """Validate JSONs produces by functions"""
+    bin_path = files / key / "example.bin"
+
+    value = bin_path.read_bytes()
+    created_json = notices.parse(key, value)
+
+    assert "$schema" in created_json
+
+    schema_path = created_json["$schema"]
+    with requests.get(schema_path) as file:
+        schema_string = file.text
+        schema = loads(schema_string)
+
+    validate(instance=created_json, schema=schema)
