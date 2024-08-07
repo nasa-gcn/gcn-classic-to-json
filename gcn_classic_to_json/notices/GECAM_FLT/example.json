@@ -1,0 +1,25 @@
+{
+  "mission": "GECAM",
+  "id": [
+    368
+  ],
+  "messenger": "EM",
+  "mission_type": "B",
+  "trigger_time": "2024-05-17T13:01:22.550Z",
+  "trigger_type": "rate",
+  "rate_energy_range": [
+    30,
+    140
+  ],
+  "rate_snr": 5.09,
+  "net_count_rate": 550,
+  "rate_duration": 10.0,
+  "ra": 57.830000000000005,
+  "dec": 17.400000000000002,
+  "ra_dec_error": 1.4899,
+  "containment_probability": 0.68,
+  "instrument_phi": 7.46,
+  "instrument_theta": 51.27,
+  "latitude": 11.09,
+  "longitude": -8.55
+}
