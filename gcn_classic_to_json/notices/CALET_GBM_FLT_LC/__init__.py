@@ -5,9 +5,6 @@ from ... import utils
 
 def parse(bin):
     assert bin[12] == 0, "Unused. According to docs: 'Always 0 for FLT_LC'"
-    bin[1]  # Unused. According to docs: 'Generally set to 1.'
-    bin[2]  # Unused. According to docs: 'hopcount item is defunct'.
-    bin[3]  # Unused. According to docs: 'seconds of day when packet was created'.
     bin[13:16]  # Unused. According to docs: '12 bytes for the future'
     bin[20:29]  # Unused. According to docs: '36 bytes for the future'
 
