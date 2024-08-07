@@ -20,6 +20,9 @@ def parse(key, value):
     ints = _frombuffer(value)
     assert len(ints) == 40
     assert ints[0] == NoticeType[key], "Field 0 must equal the notice type"
+    ints[1]  # Unused. According to docs: 'Generally set to 1.'
+    ints[2]  # Unused. According to docs: 'hopcount item is defunct'.
+    ints[3]  # Unused. According to docs: 'seconds of day when packet was created'.
     assert (
         ints[-1] == np.asarray("\0\0\0\n", dtype="c").view(">i4")[0]
     ), "Field 39 must be a newline"
