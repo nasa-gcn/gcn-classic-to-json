@@ -17,21 +17,47 @@ def keys_passing_except_for(*failing):
     ]
 
 
+class NDArrayNanny(np.ndarray):
+    """A ndarray subclass that tracks which elements have been accessed.
+
+    >>> array = np.zeros(5, dtype='>i4').view(NDArrayNanny)
+    >>> foobar = array[2:4]
+    >>> array.used
+    array([False, False,  True,  True, False])
+    >>> subarray = array[1:]
+    >>> subarray.used
+    array([False, False, False, False])
+    >>> subarray_halfprecision = subarray.view('>i2')
+    >>> batbaz = subarray_halfprecision[1]
+    >>> subarray_halfprecision.used
+    array([False,  True, False, False, False, False, False, False])
+    """
+
+    @property
+    def used(self):
+        if not hasattr(self, "_used"):
+            self._used = np.zeros(self.shape, dtype=bool)
+        return self._used
+
+    def __getitem__(self, i):
+        self.used[i] = True
+        return super().__getitem__(i)
+
+
 @pytest.mark.parametrize(
     "key",
     keys_passing_except_for("SWIFT_BAT_GRB_POS_ACK"),
 )
 def test_all_fields_used(key, monkeypatch):
     """Check that every field in the binary packet is used in the conversion."""
-    used = np.zeros(40, dtype=bool)
 
-    class NDArrayNanny(np.ndarray):
-        def __getitem__(self, i):
-            used[i] = True
-            return super().__getitem__(i)
+    used = None
 
     def mock_frombuffer(*args, **kwargs):
-        return _orig_frombuffer(*args, **kwargs).view(NDArrayNanny)
+        nonlocal used
+        result = _orig_frombuffer(*args, **kwargs).view(NDArrayNanny)
+        used = result.used
+        return result
 
     monkeypatch.setattr(notices, "_frombuffer", mock_frombuffer)
 
