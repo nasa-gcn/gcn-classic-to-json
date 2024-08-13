@@ -13,6 +13,9 @@ def parse(bin):
     bin[20:39]  # Unused. According to docs: '76 bytes for the future'
 
     soln_status_bits = np.flip(np.unpackbits(bin[18:19].view(dtype="u1")))
+    comments = None
+    if soln_status_bits[0] == 1:
+        comments = "This is a test notice."
 
     return {
         "mission": "GECAM",
@@ -34,7 +37,5 @@ def parse(bin):
         "latitude": bin[16] * 1e-2,
         "longitude": bin[17] * 1e-2,
         "classification": ({src_class_vals[bin[11] - 1]: 1},),
-        "additional_info": (
-            "This is a test notice." if soln_status_bits[0] == 1 else None
-        ),
+        "additional_info": comments,
     }
