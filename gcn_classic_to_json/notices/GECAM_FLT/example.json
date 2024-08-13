@@ -7,19 +7,52 @@
   "mission_type": "B",
   "trigger_time": "2024-05-17T13:01:22.550Z",
   "trigger_type": "rate",
-  "rate_energy_range": [
-    30,
-    140
-  ],
-  "rate_snr": 5.09,
   "net_count_rate": 550,
   "rate_duration": 10.0,
   "ra": 57.830000000000005,
   "dec": 17.400000000000002,
   "ra_dec_error": 1.4899,
-  "containment_probability": 0.68,
+  "containment_probability": 0.6826894921370859,
   "instrument_phi": 7.46,
   "instrument_theta": 51.27,
   "latitude": 11.09,
-  "longitude": -8.55
+  "longitude": -8.55,
+  "classification": [
+    {
+      "SFLARE": 1
+    }
+  ],
+  "additional_info": null,
+  "rate_snr": 5.09,
+  "rate_energy_range": [
+    30,
+    140
+  ],
+  "detector_status": {
+    "1.0": "triggered",
+    "2.0": "on",
+    "3.0": "on",
+    "4.0": "on",
+    "5.0": "on",
+    "6.0": "on",
+    "7.0": "on",
+    "8.0": "on",
+    "9.0": "on",
+    "10.0": "on",
+    "11.0": "triggered",
+    "12.0": "on",
+    "13.0": "on",
+    "14.0": "on",
+    "15.0": "on",
+    "16.0": "on",
+    "17.0": "triggered",
+    "18.0": "on",
+    "19.0": "on",
+    "20.0": "on",
+    "21.0": "on",
+    "22.0": "on",
+    "23.0": "on",
+    "24.0": "on",
+    "25.0": "on"
+  }
 }

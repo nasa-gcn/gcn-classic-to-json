@@ -1,15 +1,19 @@
+import numpy as np
+from scipy.stats import norm
+
 from ... import utils
+
+src_class_vals = ["GRB", "SFLARE", "KNOWN_SOURCE", "GENERIC_SOURCE"]
 
 
 def parse(bin):
     bin[15]  # Unused. According to docs: '4 bytes for the future'
     bin[20:39]  # Unused. According to docs: '76 bytes for the future'
-    bin[
-        11
-    ]  # Temporarily Unused. Should have a int->class_type mapping but incomplete documentation
-    bin[
-        18
-    ]  # Temporarily Unused. Should have a bit->flag mapping but incomplete documenation
+
+    soln_status_bits = np.flip(np.unpackbits(bin[18:19].view(dtype="u1")))
+
+    containment_prob = norm().cdf(1) - norm.cdf(-1)
+
     return {
         "mission": "GECAM",
         "id": [bin[4]],
@@ -24,9 +28,14 @@ def parse(bin):
         "ra": bin[7] * 1e-4,
         "dec": bin[8] * 1e-4,
         "ra_dec_error": bin[10] * 1e-4,
-        "containment_probability": 0.68,
+        "containment_probability": containment_prob,
         "instrument_phi": bin[12] * 1e-2,
         "instrument_theta": bin[13] * 1e-2,
         "latitude": bin[16] * 1e-2,
         "longitude": bin[17] * 1e-2,
+        "classification": ({src_class_vals[bin[11] - 1]: 1},),
+        # "classification": ({str(bin[11]) : 1}, ),
+        "additional_info": (
+            "This is a test notice." if soln_status_bits[0] == 1 else None
+        ),
     }

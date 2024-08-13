@@ -12,9 +12,15 @@
   "ra": 56.25,
   "dec": 16.21,
   "ra_dec_error": 1.57,
-  "containment_probability": 0.68,
+  "containment_probability": 0.6826894921370859,
   "instrument_phi": 5.98,
   "instrument_theta": 52.83,
   "latitude": 11.09,
-  "longitude": -8.55
+  "longitude": -8.55,
+  "classification": [
+    {
+      "SFLARE": 1
+    }
+  ],
+  "additional_info": null
 }
