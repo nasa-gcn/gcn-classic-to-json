@@ -7,7 +7,6 @@ trig_id_descriptions = {
     29: "There was a temporal coincidence with another event.\n",
     30: "This is a test submission.\n",
 }
-detector_options = ["on", "triggered"]
 
 
 def parse(bin):
@@ -23,6 +22,7 @@ def parse(bin):
         [val for (key, val) in trig_id_descriptions.items() if trig_id_bits[key] == 1]
     )
 
+    detector_options = ["on", "triggered"]
     detectors_bits = np.flip(np.unpackbits(bin[19:20].view(dtype="u1")))[:3]
     detectors_status = [detector_options[bit] for bit in detectors_bits]
     detectors = dict(zip(["HXM1", "HMX2", "SGM"], detectors_status))
