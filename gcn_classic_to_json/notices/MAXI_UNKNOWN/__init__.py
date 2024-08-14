@@ -38,12 +38,12 @@ def parse(bin):
     event_flag_bits = np.flip(np.unpackbits(bin[18:19].view(dtype="u1")))
 
     comments = ""
-    if event_flag_bits[4] == 1:
+    if event_flag_bits[4]:
         comments += "This notice contains negative flux.\n"
 
     misc_bits = np.flip(np.unpackbits(bin[19:20].view(dtype="u1")))
 
-    if misc_bits[30] == 1:
+    if misc_bits[30]:
         comments += "This notice was ground-generated.\n"
 
     return {
@@ -56,10 +56,10 @@ def parse(bin):
         "dec": bin[8] * 1e-4,
         "ra_dec_error": bin[11] * 1e-4,
         "energy_flux": (
-            bin[9] * 0.1 * conversion_factors[e_opt - 1] if e_opt != 0 else None
+            bin[9] * 0.1 * conversion_factors[e_opt - 1] if e_opt else None
         ),
         "energy_flux_error": (
-            bin[10] * 0.1 * conversion_factors[e_opt - 1] if e_opt != 0 else None
+            bin[10] * 0.1 * conversion_factors[e_opt - 1] if e_opt else None
         ),  # cross-check if accurate
         "systematic_included": True,
         "additional_info": comments if comments else None,
