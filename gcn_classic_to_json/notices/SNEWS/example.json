@@ -1,6 +1,6 @@
 {
   "alert_type": "initial",
-  "qlret_tense": "test",
+  "alert_tense": "test",
   "messenger": "Neutrino",
   "id": [
     1000464
