@@ -24,6 +24,7 @@
   ],
   "additional_info": null,
   "rate_snr": 5.09,
+  "trigger_duration": 2.0,
   "rate_energy_range": [
     30,
     140

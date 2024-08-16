@@ -17,6 +17,7 @@ def parse(bin):
     return {
         **parse_gecam_gnd(bin),
         "rate_snr": bin[20] * 1e-2,
+        "trigger_duration": bin[21] * 1e-4,
         "rate_energy_range": [bin[24], bin[25]],
         "detector_status": detectors,
     }
