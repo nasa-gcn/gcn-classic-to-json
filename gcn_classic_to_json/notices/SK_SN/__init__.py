@@ -2,36 +2,35 @@ import numpy as np
 
 from ... import utils
 
-# Will have to rename schema after the location is decided
-# Distance is given in a range instead of a value, need to store it as Mpc, it's in kpc in file
-# energy limit is only minumum; energy has to be in kev, it's in Mev in the file
-# There is a duration in notices but not in the packets
 
+def parse(bin):
+    bin[10]  # Unused. According to Docs:'4 bytes for the future'.
+    bin[12]  # Unused. According to Docs:'4 bytes for the future'.
+    bin[17]  # Unused. According to Docs:'4 bytes for the future'.
+    bin[
+        19
+    ]  # Intentionally Omitted. Defined as miscellaneous bits, but does not have any information.
+    bin[22:39]  # Unused. According to Docs:'68 bytes for the future'.
 
-def parse(bin_arr):
-    output = {
-        "$schema": "",
+    trig_id_bits = np.flip(np.unpackbits(bin[18:19].view(dtype="u1")))
+
+    return {
         "mission": "Super-Kamiokande",
         "alert_type": "initial",
+        "alert_tense": "test" if trig_id_bits[1] else "current",
         "messenger": "Neutrino",
-        "id": [int(bin_arr[4])],
-        "trigger_time": utils.tjd_to_jd(bin_arr[5], bin_arr[6]),
-        "ra": bin_arr[7] * 1e-4,
-        "dec": bin_arr[8] * 1e-4,
-        "ra_dec_error": bin_arr[16] * 1e-4,
-        "containment_probability": 0.95,
-        # new event
-        "n_events": int(bin_arr[9]),
-        "distance_range": [bin_arr[13] * 1e-3, bin_arr[14] * 1e-3],
+        "id": [bin[4]],
+        "trigger_time": utils.datetime_to_iso8601(bin[5], bin[6]),
+        "ra": bin[7] * 1e-4,
+        "dec": bin[8] * 1e-4,
+        "ra_dec_error_68": bin[11] * 1e-4,
+        "ra_dec_error_90": bin[15] * 1e-4,
+        "ra_dec_error_95": bin[16] * 1e-4,
+        "n_events": bin[9],
+        "collection_duration": bin[21] * 1e-4,
+        "energy_limit": bin[20] * 1e-1,
+        "distance_range": [bin[13] * 1e-5, bin[14] * 1e-5],
+        "additional_info": (
+            "This is a test notice." if trig_id_bits[1] else "This is a real notice."
+        ),
     }
-
-    trig_id_bits = np.flip(np.unpackbits(bin_arr[18:19].view(dtype="u1")))
-
-    # check if the notice is real or test
-    if trig_id_bits[1] == 1:
-        output["alert_tense"] = "test"
-        output["additional_info"] = "This is a test notice.\n"
-    else:
-        output["additional_info"] = "This is a real event.\n"
-
-    return output
