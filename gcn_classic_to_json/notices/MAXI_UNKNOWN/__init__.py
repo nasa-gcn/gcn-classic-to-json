@@ -23,9 +23,6 @@ conversion_factors = [4e-12, 1.24e-11, 1.65e-11, 8.74e-12]
 
 def parse(bin):
     bin[
-        4
-    ]  # Temporarily Unused. According to source code: 'Trigger ID number (only partial of the full MAXI ID number)'
-    bin[
         12:15
     ]  # Spare. According to docs: 'As of 31Aug2011, the MAXI Team stopped giving these value for the Unknown Transients'
     bin[
@@ -41,14 +38,16 @@ def parse(bin):
     if event_flag_bits[4]:
         comments += "This notice contains negative flux.\n"
 
+    misc_bytes = np.flip(bin[19:20].view(dtype="u1"))
     misc_bits = np.flip(np.unpackbits(bin[19:20].view(dtype="u1")))
 
     if misc_bits[30]:
-        comments += "This notice was ground-generated.\n"
+        comments += "This notice was ground-generated."
 
     return {
         "mission": "MAXI",
         "messenger": "EM",
+        "id": [int("{}0{}".format(misc_bytes[0], bin[4]))],
         "trigger_time": utils.datetime_to_iso8601(bin[5], bin[6]),
         "flux_energy_range": energy_range_options[e_opt],
         "duration": time_options[time_opt],
@@ -60,7 +59,7 @@ def parse(bin):
         ),
         "energy_flux_error": (
             bin[10] * 0.1 * conversion_factors[e_opt - 1] if e_opt else None
-        ),  # cross-check if accurate
+        ),
         "systematic_included": True,
         "additional_info": comments if comments else None,
     }
