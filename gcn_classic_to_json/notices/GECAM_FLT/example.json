@@ -3,6 +3,7 @@
   "id": [
     368
   ],
+  "alert_tense": "current",
   "messenger": "EM",
   "mission_type": "B",
   "trigger_time": "2024-05-17T13:01:22.550Z",
@@ -22,7 +23,6 @@
       "SFLARE": 1
     }
   ],
-  "additional_info": null,
   "rate_snr": 5.09,
   "trigger_duration": 2.0,
   "rate_energy_range": [

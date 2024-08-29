@@ -1,6 +1,6 @@
 import numpy as np
 
-from ..GECAM_GND import parse as parse_gecam_gnd
+from ..GECAM_GND import parse_gecam_gnd
 
 
 def parse(bin):

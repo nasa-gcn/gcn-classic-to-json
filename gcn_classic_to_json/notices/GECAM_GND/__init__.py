@@ -8,18 +8,12 @@ src_class_vals = ["GRB", "SFLARE", "KNOWN_SOURCE", "GENERIC_SOURCE"]
 containment_prob = norm().cdf(1) - norm.cdf(-1)
 
 
-def parse(bin):
-    bin[15]  # Unused. According to docs: '4 bytes for the future'
-    bin[20:39]  # Unused. According to docs: '76 bytes for the future'
-
+def parse_gecam_gnd(bin):
     soln_status_bits = np.flip(np.unpackbits(bin[18:19].view(dtype="u1")))
-    comments = None
-    if soln_status_bits[0] == 1:
-        comments = "This is a test notice."
-
     return {
         "mission": "GECAM",
         "id": [bin[4]],
+        "alert_tense": "test" if soln_status_bits[0] == 1 else "current",
         "messenger": "EM",
         "mission_type": chr(bin[19] + 64),
         # There is an error here; You are supposed to divide by 8640000 to get the correct value
@@ -37,5 +31,11 @@ def parse(bin):
         "latitude": bin[16] * 1e-2,
         "longitude": bin[17] * 1e-2,
         "classification": ({src_class_vals[bin[11] - 1]: 1},),
-        "additional_info": comments,
     }
+
+
+def parse(bin):
+    bin[15]  # Unused. According to docs: '4 bytes for the future'
+    bin[20:39]  # Unused. According to docs: '76 bytes for the future'
+
+    return {**parse_gecam_gnd(bin)}
