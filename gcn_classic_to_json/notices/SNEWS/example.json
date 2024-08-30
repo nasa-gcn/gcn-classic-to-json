@@ -6,11 +6,19 @@
     1000464
   ],
   "trigger_time": "2024-05-21T16:00:01.000Z",
-  "ra": 0.0,
-  "dec": 0.0,
+  "ra": null,
+  "dec": null,
   "ra_dec_error": 360.0,
   "containment_probability": 68.0,
   "n_events": 0,
   "duration": 0.0,
-  "additional_info": "This is an Individual detection.\nThis is a test notice.\nRA/Dec is undefined.\nSuper-K contributed to this notice.\nSuper-K quality factor is good.\nLVD contributed to this notice.\nLVD quality factor is good.\nKamLAND contributed to this notice.\nKamLAND quality factor is possible.\nBorexino contributed to this notice.\nBorexino quality factor is good.\nDaya Bay contributed to this notice.\nDaya Bay quality factor is possible."
+  "detector_quality": {
+    "Super-K": "good",
+    "LVD": "good",
+    "IceCube": "did not contribute",
+    "KamLAND": "possible",
+    "Borexino": "good",
+    "Daya Bay": "possible",
+    "HALO": "did not contribute"
+  }
 }
