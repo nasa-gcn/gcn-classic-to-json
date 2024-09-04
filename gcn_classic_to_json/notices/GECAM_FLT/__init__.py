@@ -12,7 +12,7 @@ def parse(bin):
     detector_options = ["on", "triggered"]
     detector_bits = np.flip(np.unpackbits(bin[26:27].view(dtype="u1")))
     detector_status = [detector_options[bit] for bit in detector_bits[:25]]
-    detectors = dict(zip(list(np.arange(25.0) + 1), detector_status))
+    detectors = dict(zip(range(1, 26), detector_status))
 
     return {
         **parse_gecam_gnd(bin),
