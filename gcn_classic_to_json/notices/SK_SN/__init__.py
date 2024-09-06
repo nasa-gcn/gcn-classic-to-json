@@ -30,7 +30,4 @@ def parse(bin):
         "collection_duration": bin[21] * 1e-4,
         "energy_limit": bin[20] * 1e-1,
         "distance_range": [bin[13] * 1e-5, bin[14] * 1e-5],
-        "additional_info": (
-            "This is a test notice." if trig_id_bits[1] else "This is a real notice."
-        ),
     }
