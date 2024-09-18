@@ -9,6 +9,7 @@
   "ra": null,
   "dec": null,
   "ra_dec_error": 360.0,
+  "systematic_included": true,
   "containment_probability": 68.0,
   "n_events": 0,
   "duration": 0.0,

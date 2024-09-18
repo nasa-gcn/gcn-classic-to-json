@@ -39,6 +39,7 @@ def parse(bin):
         "ra": None if trig_id_bits[2] else ra,
         "dec": None if trig_id_bits[2] else dec,
         "ra_dec_error": bin[11] * 1e-4,
+        "systematic_included": True,
         "containment_probability": bin[12] * 1e-2,
         "n_events": bin[9],
         "duration": bin[13] * 1e-2,
