@@ -36,7 +36,7 @@ def parse(bin):
         "trigger_type": "rate",
         "rate_energy_range": np.flip(bin[17:18].view(">i2")),
         "rate_snr": bin[9] * 1e-2,
-        "rate_duration": bin[10] * 1e-2,
+        "foreground_duration": bin[10] * 1e-2,
         "background_duration": bin[11] * 1e-2,
         "ra": bin[7] * 1e-4,
         "dec": bin[8] * 1e-4,
