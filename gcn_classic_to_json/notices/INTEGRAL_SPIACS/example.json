@@ -1,0 +1,12 @@
+{
+  "id": [
+    0
+  ],
+  "trigger_time": "2024-05-23T12:03:23.680Z",
+  "alert_tense": "test",
+  "alert_type": "initial",
+  "rate_snr": 11.34,
+  "binning_interval": 0.5,
+  "binning_interval_error": 0.53,
+  "temporal_coincidence": false
+}
