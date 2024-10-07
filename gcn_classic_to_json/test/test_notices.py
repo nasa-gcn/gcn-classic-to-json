@@ -72,7 +72,7 @@ def test_all_fields_used(key, monkeypatch):
 
 
 @pytest.mark.parametrize("key", notices.keys)
-def test_notices(key, generate):
+def test_notices(key):
     """Check the output of the parser against known JSON output."""
     bin_path = files / key / "example.bin"
     json_path = files / key / "example.json"
@@ -81,10 +81,9 @@ def test_notices(key, generate):
     actual_str = dumps(notices.parse(key, value), indent=2)
     actual = loads(actual_str)
 
-    if generate:
-        with json_path.open("w") as f:
-            print(actual_str, file=f)
-        pytest.skip(f"saved expected output to {json_path}")
+    with json_path.open("w") as f:
+        print(actual_str, file=f)
+    pytest.skip(f"saved expected output to {json_path}")
 
     with json_path.open("r") as f:
         expected = load(f)
