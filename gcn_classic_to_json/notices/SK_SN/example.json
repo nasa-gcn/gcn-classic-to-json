@@ -1,0 +1,22 @@
+{
+  "mission": "Super-Kamiokande",
+  "alert_type": "initial",
+  "alert_tense": "test",
+  "messenger": "Neutrino",
+  "id": [
+    10063
+  ],
+  "trigger_time": "2024-05-31T23:05:35.570Z",
+  "ra": 270.8199,
+  "dec": 31.46,
+  "ra_dec_error": 0.91,
+  "ra_dec_error_68": 0.64,
+  "ra_dec_error_95": 1.04,
+  "n_events": 64176,
+  "collection_duration": 10.0,
+  "energy_limit": 7000.0,
+  "distance_range": [
+    0.00216,
+    0.0029500000000000004
+  ]
+}
