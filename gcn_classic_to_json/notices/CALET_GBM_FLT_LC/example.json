@@ -12,7 +12,7 @@
     230
   ],
   "rate_snr": 8.3,
-  "rate_duration": 4.0,
+  "foreground_duration": 4.0,
   "background_duration": 16.0,
   "ra": 193.85000000000002,
   "dec": 50.359,
