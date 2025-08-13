@@ -1,0 +1,16 @@
+{
+  "id": [
+    0
+  ],
+  "alert_datetime": "2024-05-23T12:03:23.680Z",
+  "ra": 1.5469000000000002,
+  "dec": 2.4813,
+  "ra_dec_error": 0.016944444444444446,
+  "rate_snr": 11.34,
+  "ra_pointing": 1.459,
+  "dec_pointing": 2.4756,
+  "time_scale": 0.5,
+  "time_error": 0.53,
+  "temporal_coincidence": false,
+  "spatial_coincidence": false
+}
