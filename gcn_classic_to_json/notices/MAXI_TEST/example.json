@@ -1,0 +1,24 @@
+{
+  "mission": "MAXI",
+  "trigger_time": "2024-05-11T17:07:17.000Z",
+  "messenger": "EM",
+  "flux_energy_range": [
+    2,
+    4
+  ],
+  "duration": "30 sec",
+  "ra": 252.0,
+  "dec": 35.0,
+  "ra_dec_error": 1.0,
+  "source_flux_low_band": 0.0,
+  "background_flux_low_band": 0.0,
+  "source_flux_medium_band": 0.0,
+  "background_flux_medium_band": 0.0,
+  "source_flux_high_band": 0.0,
+  "background_flux_high_band": 0.0,
+  "systematic_included": true,
+  "latitude": -33.33,
+  "longitude": 123.45,
+  "energy_flux": 1.592e-10,
+  "additional_info": "This notice was ground-generated."
+}
