@@ -1,0 +1,43 @@
+{
+  "mission": "LVC",
+  "alert_tense": "test",
+  "messenger": "GW",
+  "trigger_time": "2024-05-11T22:40:30.203Z",
+  "id": [
+    "MS240511w"
+  ],
+  "record_number": 3,
+  "fluence": null,
+  "peak_frequency": null,
+  "far": 9.111712330429193e-14,
+  "pipeline_type": "GSTLAL",
+  "search_type": "MockDataChallenge",
+  "group_type": "CBC",
+  "duration": null,
+  "p_astro": 1.0,
+  "classification": [
+    {
+      "TERRESTRIAL": 0.0
+    },
+    {
+      "BBH": 0.0
+    },
+    {
+      "BNS": 1.0
+    },
+    {
+      "NSBH": 0.0
+    }
+  ],
+  "properties": [
+    {
+      "NS": 1.0
+    },
+    {
+      "REMNANT": 1.0
+    }
+  ],
+  "skymap_url": "https://gracedb.ligo.org/superevents/MS240511w/files/bayestar.multiorder.fit",
+  "additional_info": "This is a test Notice.\nThis event is an Open Alert.\nLIGO-Handford Observatory contributed to this candidate event.\nLIGO-Livingston Observatory contributed to this candidate event.\nThis Notice was ground-generated.\n",
+  "alert_type": "initial"
+}
