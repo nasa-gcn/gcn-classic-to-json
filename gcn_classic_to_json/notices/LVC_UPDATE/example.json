@@ -1,0 +1,43 @@
+{
+  "mission": "LVC",
+  "alert_tense": "current",
+  "messenger": "GW",
+  "trigger_time": "2024-05-14T12:17:13.721Z",
+  "id": [
+    "S240514x"
+  ],
+  "record_number": 4,
+  "fluence": null,
+  "peak_frequency": null,
+  "far": 3.1681081593280504e-10,
+  "pipeline_type": "pycbc",
+  "search_type": "AllSky",
+  "group_type": "CBC",
+  "duration": null,
+  "p_astro": 1.0,
+  "classification": [
+    {
+      "TERRESTRIAL": 0.0
+    },
+    {
+      "BBH": 1.0
+    },
+    {
+      "BNS": 0.0
+    },
+    {
+      "NSBH": 0.0
+    }
+  ],
+  "properties": [
+    {
+      "NS": 0.0
+    },
+    {
+      "REMNANT": 0.0
+    }
+  ],
+  "skymap_url": "https://gracedb.ligo.org/superevents/S240514x/files/Bilby.multiorder.fits,0",
+  "additional_info": "This event is an Open Alert.\nLIGO-Handford Observatory contributed to this candidate event.\nLIGO-Livingston Observatory contributed to this candidate event.\nVirgo Observatory contributed to this candidate event.\nThis Notice was ground-generated.\n",
+  "alert_type": "update"
+}

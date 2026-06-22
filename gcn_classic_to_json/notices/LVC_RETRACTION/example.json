@@ -1,0 +1,13 @@
+{
+  "mission": "LVC",
+  "alert_tense": "test",
+  "messenger": "GW",
+  "alert_type": "retraction",
+  "trigger_time": "2024-05-11T08:38:21.988Z",
+  "id": [
+    "MS240511i"
+  ],
+  "record_number": 3,
+  "skymap_url": "https://gracedb.ligo.org/superevents/",
+  "additional_info": "This is a test Notice.\nThis event is an Open Alert.\nThis is definitely a retraction.\nThis Notice was ground-generated.\n"
+}
