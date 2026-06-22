@@ -2,6 +2,12 @@ import numpy as np
 
 from ... import utils
 
+trig_id_descriptions = {
+    5: "This is not a real event.\n",
+    29: "There was a temporal coincidence with another event.\n",
+    30: "This is a test submission.\n",
+}
+
 
 def parse(bin):
     assert bin[12] == 0, "Unused. According to docs: 'Always 0 for FLT_LC'"
@@ -11,11 +17,7 @@ def parse(bin):
     lat, lon = bin[16:17].view(">i2")
 
     trig_id_bits = np.flip(np.unpackbits(bin[18:19].view(dtype="u1")))
-    trig_id_descriptions = {
-        5: "This is not a real event.\n",
-        29: "There was a temporal coincidence with another event.\n",
-        30: "This is a test submission.\n",
-    }
+
     comments = "".join(
         [val for (key, val) in trig_id_descriptions.items() if trig_id_bits[key] == 1]
     )
@@ -34,7 +36,7 @@ def parse(bin):
         "trigger_type": "rate",
         "rate_energy_range": np.flip(bin[17:18].view(">i2")),
         "rate_snr": bin[9] * 1e-2,
-        "rate_duration": bin[10] * 1e-2,
+        "foreground_duration": bin[10] * 1e-2,
         "background_duration": bin[11] * 1e-2,
         "ra": bin[7] * 1e-4,
         "dec": bin[8] * 1e-4,
