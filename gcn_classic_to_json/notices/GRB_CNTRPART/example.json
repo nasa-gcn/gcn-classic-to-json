@@ -1,0 +1,25 @@
+{
+  "ref_ID": [
+    21694
+  ],
+  "messenger": "EM",
+  "ref_type": "GRB",
+  "trigger_time": "2024-05-27T21:38:36.000Z",
+  "ra": 128.2194,
+  "dec": -14.349400000000001,
+  "ra_dec_error": 0.0019,
+  "systematic_included": true,
+  "spectrum": "energy",
+  "units": "keV",
+  "energy_flux": 1.5e-13,
+  "energy_flux_error": 6e-14,
+  "flux_energy_range": [
+    0.3,
+    10
+  ],
+  "duration": 2512.31,
+  "confidence_level": 0.15,
+  "ref_instrument": "Swift-XRT",
+  "submitter_name": "Phil_Evans",
+  "additional_info": "We cannot confirm whether this is the GRB or serendipitous"
+}
